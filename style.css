@@ -472,11 +472,11 @@ box-shadow:
 }
 
 .market-line::before{
-left:-10px;
+display :none;
 }
 
 .market-line::after{
-right:-10px;
+display :none;
 }
 
 .download-btn{
