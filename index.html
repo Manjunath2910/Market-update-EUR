@@ -4,16 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Market Update</title>
+
 <link rel="stylesheet" href="style.css">
+
+<!-- Download Full Card -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 </head>
 <body>
 
 <div class="card">
 
-
-<div class="coin rupee">₹</div>
-<div class="coin dollar">$</div>
-<div class="coin dollar">€</div>
+<div class="coin euro"><span>€</span></div>
+<div class="coin rupee"><span>₹</span></div>
+<div class="coin dollar"><span>$</span></div>
 
 <div class="logo">
 <img src="pandamoney.png" alt="Pandamoney Logo">
@@ -23,7 +27,6 @@
 <h1>MARKET UPDATE</h1>
 <div class="market-line"></div>
 </div>
-
 
 <div class="line"></div>
 
@@ -55,10 +58,11 @@ Rupee Hits All Time Low With
 Checking Market...
 </div>
 
-<div class="footer">
-REAL TIME • RELIABLE • TRUSTED
-</div>
+<div class="footer"></div>
 
+<button class="download-btn" onclick="downloadImage()">
+Download Image
+</button>
 </div>
 
 <script src="script.js"></script>
