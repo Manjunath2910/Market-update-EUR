@@ -22,33 +22,64 @@ height:min(95vw,1080px);
 position:relative;
 overflow:hidden;
 padding:40px;
-border-radius:25px;
+border-radius:0px;
 
-/* Background Image */
+/* NEW PANDA MONEY THEME */
 background:
 linear-gradient(
-rgba(0,0,0,0.55),
-rgba(0,0,0,0.65)
+135deg,
+rgba(0,20,18,0.96) 0%,
+rgba(0,35,30,0.94) 35%,
+rgba(0,18,15,0.97) 70%,
+rgba(0,0,0,0.98) 100%
 ),
-url("background.png");
 
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
+radial-gradient(
+circle at top left,
+rgba(0,255,170,0.10),
+transparent 35%
+),
+
+radial-gradient(
+circle at bottom right,
+rgba(255,215,0,0.08),
+transparent 30%
+);
+
+background-color:#02110f;
 
 text-align:center;
 color:white;
 
 box-shadow:
-0 0 60px rgba(255,255,255,.08),
-inset 0 0 40px rgba(255,255,255,.03);
+0 0 60px rgba(0,255,170,.08),
+inset 0 0 40px rgba(255,255,255,.02);
 
 display:flex;
 flex-direction:column;
 justify-content:space-between;
 
-transform:scale(.88);
-transform-origin:center;
+transform:none;
+max-width:1080px;
+margin:auto;
+width:100%;
+aspect-ratio:1/1;
+}
+.card::after{
+content:"";
+
+position:absolute;
+inset:0;
+
+background-image:
+linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+background-size:80px 80px;
+
+pointer-events:none;
+
+opacity:.35;
 }
 .coin{
 position:absolute;
@@ -138,27 +169,17 @@ drop-shadow(0 0 18px rgba(0,255,179,.35));
 }
 
 h1{
-font-size:70px;
-font-weight:900;
-letter-spacing:4px;
-margin-top:30px;
-margin-bottom:20px;
-
 background:linear-gradient(
 90deg,
-#878218,
-#cffff0,
-#00ffb3
+#d6b36a,
+#fff4c7,
+#d6b36a
 );
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-
-text-shadow:
-0 0 14px rgba(255, 170, 0, 0.25);
-
-white-space:nowrap;
 }
+
 h1 span{
 display:block;
 color:gold;
@@ -186,7 +207,7 @@ border-radius:10px;
 }
 
 .headline{
-font-size:28px;
+font-size:34px;
 line-height:1.5;
 color:#ddd;
 }
@@ -201,7 +222,7 @@ font-weight:bold;
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-top:80px;
+margin-top:85px;
 }
 
 .box{
@@ -219,13 +240,13 @@ inset 0 0 15px rgba(255,255,255,.03);
 transition:.3s ease;
 }
 .box h3{
-font-size:24px;
+font-size:25px;
 color:gold;
 margin-bottom:18px;
 }
 
 .box span{
-font-size:55px;
+font-size:53px;
 font-weight:bold;
 }
 
@@ -243,7 +264,7 @@ box-shadow:0 0 30px rgb(113, 110, 95);
 }
 
 .status{
-margin:35px auto 0 auto;
+margin:15px auto 0 auto;
 
 padding:18px 32px;
 
@@ -270,7 +291,7 @@ max-width:max-content;
 }
 
 .footer{
-margin-top:80px;
+margin-top:38px;
 font-size:18px;
 letter-spacing:4px;
 color:#aaa;
@@ -294,7 +315,7 @@ pointer-events:none;
 }
 
 .history-box{
-margin:50px auto;
+margin:100px auto;
 
 width:28%;
 max-height:250px;
@@ -353,7 +374,7 @@ linear-gradient(
 }
 
 .history-title{
-font-size:22px;
+font-size:20px;
 font-weight:900;
 
 letter-spacing:2px;
@@ -366,7 +387,7 @@ padding:0 0 15px 0;
 
 margin:0 0 18px 0;
 
-line-height:1;
+line-height:0;
 
 border-bottom:2px solid #cbd5e1;
 
@@ -425,28 +446,37 @@ color:#0f172a;
 display:flex;
 flex-direction:column;
 align-items:center;
-margin-top:26px;
+margin-top:20px;
+
+transform:scale(1.05);
 }
+
 .market-title h1{
+
+font-size:50px;
+font-weight:900;
+letter-spacing:6px;
+line-height:1;
+
 background:none !important;
-color:#ffd700 !important;
+color:#d6b36a !important;
 
 text-shadow:
-0 0 3px rgba(255,215,0,.35),
-0 0 6px rgba(255,215,0,.18);
+0 0 5px rgba(214,179,106,.45),
+0 0 12px rgba(214,179,106,.25);
 
 filter:none !important;
 opacity:1;
 
--webkit-text-fill-color:#ffd700 !important;
+-webkit-text-fill-color:#d6b36a !important;
 -webkit-background-clip:unset !important;
-
-font-weight:900;
-letter-spacing:4px;
 
 transform:translateZ(0);
 backface-visibility:hidden;
 -webkit-font-smoothing:antialiased;
+
+margin-top:10px;
+margin-bottom:50px;
 }
 
 
@@ -536,3 +566,30 @@ transform:scale(.96);
     font-size: 20px;
 }
 
+
+@media(max-width:768px){
+
+.card{
+width:100%;
+max-width:100%;
+padding:25px;
+}
+
+.market-title h1{
+font-size:52px;
+}
+
+.rates{
+gap:20px;
+}
+
+.box{
+width:240px;
+padding:25px;
+}
+
+.coin{
+transform:none !important;
+}
+
+}
