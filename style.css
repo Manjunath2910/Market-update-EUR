@@ -22,14 +22,9 @@ align-items:flex-start;
 
 .card{
 
-width:1080px;
-height:1080px;
-
-min-width:1080px;
-min-height:1080px;
-
-max-width:1080px;
-max-height:1080px;
+width:min(95vw,1080px);
+height:min(95vw,1080px);
+aspect-ratio:1/1;
 
 position:relative;
 overflow:hidden;
@@ -87,7 +82,7 @@ box-sizing:border-box;
 
 /* VERY IMPORTANT */
 transform:none !important;
-zoom:1 !important;
+
 
 }
 .card::after{

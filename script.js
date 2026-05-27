@@ -2,6 +2,7 @@ const apiKey = "e861da91-0e07-4364-8f77-403c7db89dd8";
 
 let dataLoaded = false;
 
+/* FETCH RATE */
 async function getRate(date = null){
 
 let url =
@@ -26,11 +27,14 @@ const data = await response.json();
 return data[0].rate;
 }
 
+
+/* LOAD RATES */
 async function loadRates(){
 
 try{
 
 let history = [];
+
 let historyHTML = `
 <div class="history-title">
 PREVIOUS DATA
@@ -72,6 +76,9 @@ document.getElementById("today").innerHTML =
 document.getElementById("yesterday").innerHTML =
 `₹${yesterdayRate.toFixed(2)}`;
 
+
+/* STATUS */
+
 if(todayRate > yesterdayRate){
 
 document.getElementById("status").innerHTML =
@@ -109,7 +116,8 @@ console.log(error);
 }
 
 
-/* EXACT SCREEN DOWNLOAD */
+
+/* DOWNLOAD BOTH IMAGES */
 
 async function downloadImage(){
 
@@ -124,131 +132,136 @@ document.querySelector(".card");
 const button =
 document.querySelector(".download-btn");
 
-/* hide button while capture */
-button.style.visibility="hidden";
+/* HIDE BUTTON */
+button.style.visibility = "hidden";
 
 await new Promise(resolve =>
 setTimeout(resolve,500)
 );
 
+
+/* EXACT SCREEN CAPTURE */
+
 const canvas =
 await html2canvas(card,{
 
-scale:5,
+scale:4,
 
 useCORS:true,
 allowTaint:true,
 
-backgroundColor:"#000",
+backgroundColor:null,
 
 scrollX:0,
 scrollY:0,
 
-windowWidth:1080,
-windowHeight:1080,
+logging:false,
 
-width:1080,
-height:1080,
-
-foreignObjectRendering:false,
-
-logging:false
-
+windowWidth:card.scrollWidth,
+windowHeight:card.scrollHeight
 });
-/* show button again */
-button.style.visibility="visible";
 
 
-/* ---------- POST 1:1 ---------- */
+/* SHOW BUTTON AGAIN */
+button.style.visibility = "visible";
+
+
+
+/* =========================
+   INSTAGRAM POST 1:1
+========================= */
 
 const postCanvas =
 document.createElement("canvas");
 
-postCanvas.width=1080;
-postCanvas.height=1080;
+postCanvas.width = 1080;
+postCanvas.height = 1080;
 
-const pctx=
+const pctx =
 postCanvas.getContext("2d");
 
-pctx.fillStyle="#000";
+pctx.fillStyle = "#000";
 pctx.fillRect(0,0,1080,1080);
-
-const postScale=Math.min(
-1080/canvas.width,
-1080/canvas.height
-);
-
-const pw=canvas.width*postScale;
-const ph=canvas.height*postScale;
 
 pctx.drawImage(
 canvas,
-(1080-pw)/2,
-(1080-ph)/2,
-pw,
-ph
+0,
+0,
+1080,
+1080
 );
 
-const postLink=
+const postLink =
 document.createElement("a");
 
-postLink.download=
+postLink.download =
 "pandamoney-post.png";
 
-postLink.href=
-postCanvas.toDataURL("image/png");
+postLink.href =
+postCanvas.toDataURL("image/png",1);
 
 document.body.appendChild(postLink);
+
 postLink.click();
+
 document.body.removeChild(postLink);
 
 
-/* ---------- STORY 9:16 ---------- */
+
+/* =========================
+   STORY 9:16
+========================= */
 
 setTimeout(()=>{
 
-const storyCanvas=
+const storyCanvas =
 document.createElement("canvas");
 
-storyCanvas.width=1080;
-storyCanvas.height=1920;
+storyCanvas.width = 1080;
+storyCanvas.height = 1920;
 
-const sctx=
+const sctx =
 storyCanvas.getContext("2d");
 
-sctx.fillStyle="#000";
+sctx.fillStyle = "#000";
 sctx.fillRect(0,0,1080,1920);
 
-const storyScale=Math.min(
-1080/canvas.width,
-1920/canvas.height
-);
 
-const sw=canvas.width*storyScale;
-const sh=canvas.height*storyScale;
+/* FIT CARD CENTER */
+
+const cardWidth = 1080;
+const cardHeight = 1080;
+
+const y =
+(1920 - cardHeight)/2;
 
 sctx.drawImage(
 canvas,
-(1080-sw)/2,
-(1920-sh)/2,
-sw,
-sh
+0,
+y,
+cardWidth,
+cardHeight
 );
 
-const storyLink=
+const storyLink =
 document.createElement("a");
 
-storyLink.download=
+storyLink.download =
 "pandamoney-story.png";
 
-storyLink.href=
-storyCanvas.toDataURL("image/png");
+storyLink.href =
+storyCanvas.toDataURL("image/png",1);
 
 document.body.appendChild(storyLink);
+
 storyLink.click();
+
 document.body.removeChild(storyLink);
 
 },1000);
 
 }
+
+
+/* START */
 loadRates();
