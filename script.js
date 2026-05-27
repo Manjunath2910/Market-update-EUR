@@ -261,10 +261,9 @@ const y =
 
 const storyRatio =
 Math.min(
-1080 / canvas.width,
-1600 / canvas.height
+900 / canvas.width,
+1350 / canvas.height
 );
-
 const sw =
 canvas.width * storyRatio;
 
@@ -274,8 +273,8 @@ canvas.height * storyRatio;
 const sx =
 (1080 - sw) / 2;
 
-const sy =
-(1920 - sh) / 2;
+const storyY =
+(1920 - storyHeight)/2 - 40;
 
 sctx.drawImage(
 canvas,
