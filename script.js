@@ -85,10 +85,10 @@ historyHTML;
 const yesterdayRate = history[14].rate;
 const todayRate = history[15].rate;
 
-document.getElementById("today").innerHTML =
+document.getElementById("today").textContent =
 `₹${todayRate.toFixed(2)}`;
 
-document.getElementById("yesterday").innerHTML =
+document.getElementById("yesterday").textContent =
 `₹${yesterdayRate.toFixed(2)}`;
 
 
@@ -165,42 +165,56 @@ document.querySelector(".download-btn");
 button.style.visibility = "hidden";
 
 await new Promise(resolve =>
-setTimeout(resolve,700)
+setTimeout(resolve,500)
 );
 
+await document.fonts.ready;
 
-/* SCREENSHOT */
+
+/* EXACT CARD SIZE */
+
+const rect =
+card.getBoundingClientRect();
+
+
+/* MAIN CAPTURE */
 
 const canvas =
 await html2canvas(card,{
 
-scale:3,
+scale:4,
 
 useCORS:true,
 allowTaint:true,
 
-backgroundColor:"#000",
+backgroundColor:null,
 
 scrollX:0,
 scrollY:0,
 
-windowWidth:card.scrollWidth,
-windowHeight:card.scrollHeight,
+width:rect.width,
+height:rect.height,
+
+windowWidth:rect.width,
+windowHeight:rect.height,
+
+x:0,
+y:0,
 
 logging:false
 
 });
 
 
-/* SHOW BUTTON AGAIN */
+/* SHOW BUTTON */
 
 button.style.visibility = "visible";
 
 
 
-/* =====================================
-   INSTAGRAM POST 1080 x 1080
-===================================== */
+/* =========================
+   INSTAGRAM POST 1:1
+========================= */
 
 const postCanvas =
 document.createElement("canvas");
@@ -211,52 +225,54 @@ postCanvas.height = 1080;
 const pctx =
 postCanvas.getContext("2d");
 
-pctx.fillStyle = "#000";
-pctx.fillRect(0,0,1080,1080);
+
+/* REMOVE BLACK BORDER */
+
+pctx.clearRect(0,0,1080,1080);
 
 
-/* FIT FULL CARD */
+/* FIT FULL IMAGE */
 
 const postScale =
 Math.min(
-950 / canvas.width,
-950 / canvas.height
+1080 / canvas.width,
+1080 / canvas.height
 );
 
-const pw =
+const postWidth =
 canvas.width * postScale;
 
-const ph =
+const postHeight =
 canvas.height * postScale;
 
-const px =
-(1080 - pw)/2;
+const postX =
+(1080 - postWidth)/2;
 
-const py =
-(1080 - ph)/2;
+const postY =
+(1080 - postHeight)/2;
+
+
+/* DRAW IMAGE */
 
 pctx.drawImage(
 canvas,
-px,
-py,
-pw,
-ph
+postX,
+postY,
+postWidth,
+postHeight
 );
 
 
 /* DOWNLOAD POST */
 
-const postData =
-postCanvas.toDataURL("image/png");
-
 const postLink =
 document.createElement("a");
 
-postLink.href =
-postData;
-
 postLink.download =
 "pandamoney-post.png";
+
+postLink.href =
+postCanvas.toDataURL("image/png");
 
 document.body.appendChild(postLink);
 
@@ -266,10 +282,9 @@ document.body.removeChild(postLink);
 
 
 
-
-/* =====================================
-   INSTAGRAM STORY 1080 x 1920
-===================================== */
+/* =========================
+   STORY 9:16
+========================= */
 
 setTimeout(()=>{
 
@@ -282,55 +297,54 @@ storyCanvas.height = 1920;
 const sctx =
 storyCanvas.getContext("2d");
 
-sctx.fillStyle = "#000";
-sctx.fillRect(0,0,1080,1920);
+
+/* REMOVE BLACK BACKGROUND */
+
+sctx.clearRect(0,0,1080,1920);
 
 
-/* FIT FULL IMAGE INSIDE STORY */
+/* FIT FULL IMAGE */
 
 const storyScale =
 Math.min(
-1000 / canvas.width,
-1750 / canvas.height
+1080 / canvas.width,
+1920 / canvas.height
 );
 
-const sw =
+const storyWidth =
 canvas.width * storyScale;
 
-const sh =
+const storyHeight =
 canvas.height * storyScale;
 
-const sx =
-(1080 - sw)/2;
+const storyX =
+(1080 - storyWidth)/2;
 
-const sy =
-(1920 - sh)/2;
+const storyY =
+(1920 - storyHeight)/2;
 
 
-/* DRAW */
+/* DRAW IMAGE */
 
 sctx.drawImage(
 canvas,
-sx,
-sy,
-sw,
-sh
+storyX,
+storyY,
+storyWidth,
+storyHeight
 );
 
 
 /* DOWNLOAD STORY */
 
-const storyData =
-storyCanvas.toDataURL("image/png");
-
 const storyLink =
 document.createElement("a");
 
-storyLink.href =
-storyData;
-
 storyLink.download =
 "pandamoney-story.png";
+
+storyLink.href =
+storyCanvas.toDataURL("image/png");
 
 document.body.appendChild(storyLink);
 
@@ -338,7 +352,7 @@ storyLink.click();
 
 document.body.removeChild(storyLink);
 
-},1800);
+},1200);
 
 }
 
