@@ -608,3 +608,39 @@ transform:none !important;
 }
 
 }
+
+/* FIX MOBILE IMAGE EXPORT */
+
+.card{
+width:1080px !important;
+height:1080px !important;
+
+max-width:none !important;
+min-width:1080px !important;
+
+transform:scale(.32);
+transform-origin:top center;
+
+margin:auto;
+}
+
+/* MOBILE VIEW FIX */
+
+body{
+overflow-x:auto;
+}
+
+/* STORY SIZE */
+
+@media(max-width:768px){
+
+.card{
+
+transform:scale(.26);
+
+margin-top:-280px;
+margin-left:-390px;
+
+}
+
+}
