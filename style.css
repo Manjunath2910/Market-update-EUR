@@ -26,6 +26,14 @@ width:min(95vw,1080px);
 height:min(95vw,1080px);
 aspect-ratio:1/1;
 
+width:1080px !important;
+height:1080px !important;
+
+max-width:none !important;
+min-width:1080px !important;
+
+margin:auto;
+
 position:relative;
 overflow:hidden;
 padding:40px;
@@ -640,6 +648,32 @@ transform:scale(.26);
 
 margin-top:-280px;
 margin-left:-390px;
+
+}
+
+}
+@media(max-width:768px){
+
+body{
+
+display:flex;
+justify-content:center;
+align-items:flex-start;
+
+overflow:auto;
+
+}
+
+/* SHOW FULL IMAGE */
+
+.card{
+
+zoom:0.22;
+
+transform:none !important;
+
+margin-top:20px;
+margin-left:0;
 
 }
 
