@@ -142,6 +142,9 @@ setTimeout(resolve,500)
 
 /* EXACT SCREEN CAPTURE */
 
+const originalWidth = card.offsetWidth;
+const originalHeight = card.offsetHeight;
+
 const canvas =
 await html2canvas(card,{
 
@@ -157,10 +160,13 @@ scrollY:0,
 
 logging:false,
 
-windowWidth:card.scrollWidth,
-windowHeight:card.scrollHeight
-});
+width:originalWidth,
+height:originalHeight,
 
+windowWidth:originalWidth,
+windowHeight:originalHeight
+
+});
 
 /* SHOW BUTTON AGAIN */
 button.style.visibility = "visible";
@@ -189,24 +195,24 @@ Math.min(
 1080 / canvas.height
 );
 
-const newWidth =
+const drawWidth =
 canvas.width * ratio;
 
-const newHeight =
+const drawHeight =
 canvas.height * ratio;
 
-const x =
-(1080 - newWidth) / 2;
+const drawX =
+(1080 - drawWidth)/2;
 
-const y =
-(1080 - newHeight) / 2;
+const drawY =
+(1080 - drawHeight)/2;
 
 pctx.drawImage(
 canvas,
-x,
-y,
-newWidth,
-newHeight
+drawX,
+drawY,
+drawWidth,
+drawHeight
 );
 
 const postLink =
