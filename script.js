@@ -165,25 +165,27 @@ document.querySelector(".download-btn");
 button.style.visibility = "hidden";
 
 await new Promise(resolve =>
-setTimeout(resolve,500)
+setTimeout(resolve,700)
 );
 
 
-/* EXACT SCREEN CAPTURE */
+/* SCREENSHOT */
 
 const canvas =
 await html2canvas(card,{
 
-scale:4,
+scale:3,
 
 useCORS:true,
-
 allowTaint:true,
 
 backgroundColor:"#000",
 
 scrollX:0,
 scrollY:0,
+
+windowWidth:card.scrollWidth,
+windowHeight:card.scrollHeight,
 
 logging:false
 
@@ -196,9 +198,9 @@ button.style.visibility = "visible";
 
 
 
-/* =================================
-   INSTAGRAM POST 1:1
-================================= */
+/* =====================================
+   INSTAGRAM POST 1080 x 1080
+===================================== */
 
 const postCanvas =
 document.createElement("canvas");
@@ -213,12 +215,12 @@ pctx.fillStyle = "#000";
 pctx.fillRect(0,0,1080,1080);
 
 
-/* FIT FULL IMAGE */
+/* FIT FULL CARD */
 
 const postScale =
 Math.min(
-1000 / canvas.width,
-1000 / canvas.height
+950 / canvas.width,
+950 / canvas.height
 );
 
 const pw =
@@ -244,14 +246,17 @@ ph
 
 /* DOWNLOAD POST */
 
+const postData =
+postCanvas.toDataURL("image/png");
+
 const postLink =
 document.createElement("a");
 
+postLink.href =
+postData;
+
 postLink.download =
 "pandamoney-post.png";
-
-postLink.href =
-postCanvas.toDataURL("image/png",1);
 
 document.body.appendChild(postLink);
 
@@ -261,9 +266,10 @@ document.body.removeChild(postLink);
 
 
 
-/* =================================
-   STORY 9:16
-================================= */
+
+/* =====================================
+   INSTAGRAM STORY 1080 x 1920
+===================================== */
 
 setTimeout(()=>{
 
@@ -280,12 +286,12 @@ sctx.fillStyle = "#000";
 sctx.fillRect(0,0,1080,1920);
 
 
-/* FULL IMAGE FIT */
+/* FIT FULL IMAGE INSIDE STORY */
 
 const storyScale =
 Math.min(
-980 / canvas.width,
-1600 / canvas.height
+1000 / canvas.width,
+1750 / canvas.height
 );
 
 const sw =
@@ -301,7 +307,7 @@ const sy =
 (1920 - sh)/2;
 
 
-/* DRAW FULL IMAGE */
+/* DRAW */
 
 sctx.drawImage(
 canvas,
@@ -314,14 +320,17 @@ sh
 
 /* DOWNLOAD STORY */
 
+const storyData =
+storyCanvas.toDataURL("image/png");
+
 const storyLink =
 document.createElement("a");
 
+storyLink.href =
+storyData;
+
 storyLink.download =
 "pandamoney-story.png";
-
-storyLink.href =
-storyCanvas.toDataURL("image/png",1);
 
 document.body.appendChild(storyLink);
 
@@ -329,7 +338,7 @@ storyLink.click();
 
 document.body.removeChild(storyLink);
 
-},1200);
+},1800);
 
 }
 
