@@ -638,43 +638,54 @@ body{
 overflow-x:auto;
 }
 
-/* STORY SIZE */
-
 @media(max-width:768px){
 
-.card{
-
-transform:scale(.26);
-
-margin-top:-280px;
-margin-left:-390px;
-
-}
-
-}
-@media(max-width:768px){
-
+html,
 body{
-
-display:flex;
-justify-content:center;
-align-items:flex-start;
-
-overflow:auto;
-
+margin:0;
+padding:0;
+background:#000;
+overflow-x:auto;
+overflow-y:auto;
 }
 
-/* SHOW FULL IMAGE */
+/* FULL CARD */
 
 .card{
 
-zoom:0.22;
+width:1080px !important;
+height:1080px !important;
+
+zoom:0.55;
 
 transform:none !important;
 
-margin-top:20px;
-margin-left:0;
+margin:20px auto 120px auto;
+
+position:relative;
+
+}
+
+/* DOWNLOAD BUTTON */
+
+.download-btn{
+
+position:fixed;
+
+bottom:20px;
+left:50%;
+
+transform:translateX(-50%);
+
+z-index:9999;
+
+font-size:16px;
+padding:14px 24px;
+
+border-radius:12px;
 
 }
 
 }
+
+
