@@ -133,13 +133,28 @@ setTimeout(resolve,500)
 
 const canvas =
 await html2canvas(card,{
-useCORS:true,
-scale:4,
-backgroundColor:null,
-scrollX:0,
-scrollY:0
-});
 
+scale:5,
+
+useCORS:true,
+allowTaint:true,
+
+backgroundColor:"#000",
+
+scrollX:0,
+scrollY:0,
+
+windowWidth:1080,
+windowHeight:1080,
+
+width:1080,
+height:1080,
+
+foreignObjectRendering:false,
+
+logging:false
+
+});
 /* show button again */
 button.style.visibility="visible";
 
