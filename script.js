@@ -2,7 +2,9 @@ const apiKey = "e861da91-0e07-4364-8f77-403c7db89dd8";
 
 let dataLoaded = false;
 
+
 /* FETCH RATE */
+
 async function getRate(date = null){
 
 let url =
@@ -24,11 +26,15 @@ throw new Error("API Error");
 }
 
 const data = await response.json();
+
 return data[0].rate;
+
 }
 
 
+
 /* LOAD RATES */
+
 async function loadRates(){
 
 try{
@@ -44,6 +50,7 @@ PREVIOUS DATA
 for(let i=15;i>=0;i--){
 
 const d = new Date();
+
 d.setDate(d.getDate()-i);
 
 const date =
@@ -57,15 +64,23 @@ history.push({date,rate});
 historyHTML += `
 <div class="history-item">
 <span class="history-date">${date}</span>
+
 <span class="history-rate">
 ₹${rate.toFixed(2)}
 </span>
 </div>
 `;
+
 }
+
+
+/* HISTORY */
 
 document.getElementById("historyBox").innerHTML =
 historyHTML;
+
+
+/* TODAY + YESTERDAY */
 
 const yesterdayRate = history[14].rate;
 const todayRate = history[15].rate;
@@ -82,32 +97,41 @@ document.getElementById("yesterday").innerHTML =
 if(todayRate > yesterdayRate){
 
 document.getElementById("status").innerHTML =
-`<div class="status-icon">↑</div>
-EUR HAS STRENGTHENED VS INR`;
+`
+<div class="status-icon">↑</div>
+EUR HAS STRENGTHENED VS INR
+`;
 
 }
 else if(todayRate < yesterdayRate){
 
 document.getElementById("status").innerHTML =
-`<div class="status-icon">↓</div>
-EUR HAS WEAKENED VS INR`;
+`
+<div class="status-icon">↓</div>
+EUR HAS WEAKENED VS INR
+`;
 
 }
 else{
 
 document.getElementById("status").innerHTML =
-`<div class="status-icon">•</div>
-EUR RATE UNCHANGED`;
+`
+<div class="status-icon">•</div>
+EUR RATE UNCHANGED
+`;
 
 }
 
 dataLoaded = true;
 
-}catch(error){
+}
+catch(error){
 
 document.getElementById("status").innerHTML =
-`<div class="status-icon">!</div>
-FAILED TO LOAD DATA`;
+`
+<div class="status-icon">!</div>
+FAILED TO LOAD DATA
+`;
 
 console.log(error);
 
@@ -122,8 +146,11 @@ console.log(error);
 async function downloadImage(){
 
 if(!dataLoaded){
+
 alert("Wait... market data loading");
+
 return;
+
 }
 
 const card =
@@ -132,7 +159,9 @@ document.querySelector(".card");
 const button =
 document.querySelector(".download-btn");
 
+
 /* HIDE BUTTON */
+
 button.style.visibility = "hidden";
 
 await new Promise(resolve =>
@@ -142,40 +171,34 @@ setTimeout(resolve,500)
 
 /* EXACT SCREEN CAPTURE */
 
-const originalWidth = card.offsetWidth;
-const originalHeight = card.offsetHeight;
-
 const canvas =
 await html2canvas(card,{
 
 scale:4,
 
 useCORS:true,
+
 allowTaint:true,
 
-backgroundColor:null,
+backgroundColor:"#000",
 
 scrollX:0,
 scrollY:0,
 
-logging:false,
-
-width:originalWidth,
-height:originalHeight,
-
-windowWidth:originalWidth,
-windowHeight:originalHeight
+logging:false
 
 });
 
+
 /* SHOW BUTTON AGAIN */
+
 button.style.visibility = "visible";
 
 
 
-/* =========================
+/* =================================
    INSTAGRAM POST 1:1
-========================= */
+================================= */
 
 const postCanvas =
 document.createElement("canvas");
@@ -189,31 +212,37 @@ postCanvas.getContext("2d");
 pctx.fillStyle = "#000";
 pctx.fillRect(0,0,1080,1080);
 
-const ratio =
+
+/* FIT FULL IMAGE */
+
+const postScale =
 Math.min(
-1080 / canvas.width,
-1080 / canvas.height
+1000 / canvas.width,
+1000 / canvas.height
 );
 
-const drawWidth =
-canvas.width * ratio;
+const pw =
+canvas.width * postScale;
 
-const drawHeight =
-canvas.height * ratio;
+const ph =
+canvas.height * postScale;
 
-const drawX =
-(1080 - drawWidth)/2;
+const px =
+(1080 - pw)/2;
 
-const drawY =
-(1080 - drawHeight)/2;
+const py =
+(1080 - ph)/2;
 
 pctx.drawImage(
 canvas,
-drawX,
-drawY,
-drawWidth,
-drawHeight
+px,
+py,
+pw,
+ph
 );
+
+
+/* DOWNLOAD POST */
 
 const postLink =
 document.createElement("a");
@@ -232,9 +261,9 @@ document.body.removeChild(postLink);
 
 
 
-/* =========================
+/* =================================
    STORY 9:16
-========================= */
+================================= */
 
 setTimeout(()=>{
 
@@ -251,30 +280,28 @@ sctx.fillStyle = "#000";
 sctx.fillRect(0,0,1080,1920);
 
 
-/* FIT CARD CENTER */
+/* FULL IMAGE FIT */
 
-const cardWidth = 1080;
-const cardHeight = 1080;
-
-const y =
-(1920 - cardHeight)/2;
-
-const storyRatio =
+const storyScale =
 Math.min(
-900 / canvas.width,
-1350 / canvas.height
+980 / canvas.width,
+1600 / canvas.height
 );
+
 const sw =
-canvas.width * storyRatio;
+canvas.width * storyScale;
 
 const sh =
-canvas.height * storyRatio;
+canvas.height * storyScale;
 
 const sx =
-(1080 - sw) / 2;
+(1080 - sw)/2;
 
-const storyY =
-(1920 - storyHeight)/2 - 40;
+const sy =
+(1920 - sh)/2;
+
+
+/* DRAW FULL IMAGE */
 
 sctx.drawImage(
 canvas,
@@ -283,6 +310,9 @@ sy,
 sw,
 sh
 );
+
+
+/* DOWNLOAD STORY */
 
 const storyLink =
 document.createElement("a");
@@ -299,10 +329,16 @@ storyLink.click();
 
 document.body.removeChild(storyLink);
 
-},1000);
+},1200);
 
 }
 
 
+
 /* START */
+
+window.onload = () => {
+
 loadRates();
+
+};
