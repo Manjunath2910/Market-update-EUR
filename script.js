@@ -183,12 +183,30 @@ postCanvas.getContext("2d");
 pctx.fillStyle = "#000";
 pctx.fillRect(0,0,1080,1080);
 
+const ratio =
+Math.min(
+1080 / canvas.width,
+1080 / canvas.height
+);
+
+const newWidth =
+canvas.width * ratio;
+
+const newHeight =
+canvas.height * ratio;
+
+const x =
+(1080 - newWidth) / 2;
+
+const y =
+(1080 - newHeight) / 2;
+
 pctx.drawImage(
 canvas,
-0,
-0,
-1080,
-1080
+x,
+y,
+newWidth,
+newHeight
 );
 
 const postLink =
@@ -235,12 +253,30 @@ const cardHeight = 1080;
 const y =
 (1920 - cardHeight)/2;
 
+const storyRatio =
+Math.min(
+1080 / canvas.width,
+1600 / canvas.height
+);
+
+const sw =
+canvas.width * storyRatio;
+
+const sh =
+canvas.height * storyRatio;
+
+const sx =
+(1080 - sw) / 2;
+
+const sy =
+(1920 - sh) / 2;
+
 sctx.drawImage(
 canvas,
-0,
-y,
-cardWidth,
-cardHeight
+sx,
+sy,
+sw,
+sh
 );
 
 const storyLink =
