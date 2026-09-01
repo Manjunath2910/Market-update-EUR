@@ -155,6 +155,10 @@ if (storyBtn) {
     storyBtn.style.visibility = "hidden";
 }
 
+/* Capture at full 1080 (undo any mobile fit-scale during the shot).
+   Uses !important because the mobile scale rule is !important. */
+card.style.setProperty("transform", "none", "important");
+
 await new Promise(resolve =>
 setTimeout(resolve,500)
 );
@@ -208,6 +212,10 @@ if (instagramBtn) {
 if (storyBtn) {
     storyBtn.style.visibility = "visible";
 }
+
+/* Restore the mobile fit-scale after the capture. */
+card.style.removeProperty("transform");
+fitCard();
 
 
 
@@ -364,11 +372,31 @@ return { postCanvas, storyCanvas };
 
 
 
+/* Responsive: scale the fixed-1080 card to the phone width (only on small
+   screens). Uses a real numeric scale, which CSS calc() can't produce from vw. */
+function fitCard(){
+    const card = document.querySelector(".card");
+    if(!card) return;
+    if(window.innerWidth <= 1120){
+        const s = window.innerWidth / 1080;
+        card.style.setProperty("transform-origin", "top left", "important");
+        card.style.setProperty("transform", `scale(${s})`, "important");
+    } else {
+        card.style.removeProperty("transform");
+        card.style.removeProperty("transform-origin");
+    }
+}
+
+window.addEventListener("resize", fitCard);
+window.addEventListener("orientationchange", fitCard);
+
+
 /* START */
 
 window.onload = () => {
 
 loadRates();
+fitCard();
 
 };
 

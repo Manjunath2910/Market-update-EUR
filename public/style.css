@@ -562,96 +562,36 @@ box-shadow:0 10px 22px rgba(214,41,118,.55);
 
 
 
-@media(max-width:1100px){
+/* ===== Responsive: scale the fixed-1080 card to fit the phone width ===== */
 
+/* Desktop: stage is invisible; the card behaves exactly as before. */
+.stage{ display:contents; }
+
+@media(max-width:1120px){
+
+/* Make the page a normal dark scroll page that matches the card's colour, so
+   any area below the card blends in (no harsh black box). */
+html, body{
+overflow-x:hidden;
+background:#02110f;
+}
 body{
-overflow:auto;
+display:block;
 }
 
-/* KEEP ORIGINAL SIZE */
+/* Stage = a full-width square that neatly clips the scaled 1080 card. */
+.stage{
+display:block;
+width:100vw;
+aspect-ratio:1 / 1;
+overflow:hidden;
+margin:0 auto;
+}
+
+/* The card is scaled to fit by JS (fitCard) — CSS just sets the origin/margin. */
 .card{
-
-width:1080px !important;
-height:1080px !important;
-
-min-width:1080px !important;
-min-height:1080px !important;
-
-max-width:1080px !important;
-max-height:1080px !important;
-
-transform:none !important;
-}
-
-}
-
-/* FIX MOBILE IMAGE EXPORT */
-
-.card{
-width:1080px !important;
-height:1080px !important;
-
-max-width:none !important;
-min-width:1080px !important;
-
-transform:scale(.32);
-transform-origin:top center;
-
-margin:auto;
-}
-
-/* MOBILE VIEW FIX */
-
-body{
-overflow-x:auto;
-}
-
-@media(max-width:768px){
-
-html,
-body{
-margin:0;
-padding:0;
-background:#000;
-overflow-x:auto;
-overflow-y:auto;
-}
-
-/* FULL CARD */
-
-.card{
-
-width:1080px !important;
-height:1080px !important;
-
-zoom:0.55;
-
-transform:none !important;
-
-margin:20px auto 120px auto;
-
-position:relative;
-
-}
-
-/* DOWNLOAD BUTTON */
-
-.download-btn{
-
-position:fixed;
-
-bottom:20px;
-left:50%;
-
-transform:translateX(-50%);
-
-z-index:9999;
-
-font-size:16px;
-padding:14px 24px;
-
-border-radius:12px;
-
+transform-origin:top left !important;
+margin:0 !important;
 }
 
 }
