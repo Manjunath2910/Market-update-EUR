@@ -33,7 +33,7 @@ console.log("STEP 9");
 
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "15mb" }));   // base64 images can be large
 app.use(express.static(path.join(__dirname, "public")));
 console.log("STEP 10");
 
@@ -41,6 +41,10 @@ app.use((req, res, next) => {
     console.log(req.method, req.url);
     next();
 });
+
+// Reuse the exact same handlers Vercel uses, so local dev matches production.
+app.post("/api/upload", require("./api/upload"));
+app.post("/api/publish", require("./api/publish"));
 
 
 app.post("/upload", upload.single("image"), async (req, res) => {

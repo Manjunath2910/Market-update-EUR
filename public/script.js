@@ -432,7 +432,7 @@ async function postToInstagram() {
 
         alert("8. Sending request to Express Server");
 
-        const response = await fetch("http://localhost:3000/publish", {
+        const response = await fetch("/api/publish", {
 
             method: "POST",
 
@@ -552,7 +552,7 @@ async function postStoryToInstagram() {
         const storyCanvas = await renderStoryCanvas();
         const imageUrl = await uploadToCloudinary(storyCanvas);
         // Publish as an Instagram STORY.
-        const response = await fetch("http://localhost:3000/publish", {
+        const response = await fetch("/api/publish", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ imageUrl, mediaType: "story" })
@@ -574,23 +574,17 @@ async function postStoryToInstagram() {
 
 async function uploadToCloudinary(canvas) {
 
-    const blob = await new Promise(resolve =>
-        canvas.toBlob(resolve, "image/png", 1)
-    );
+    // Send the image as a base64 data URL (JSON) so it works as a serverless
+    // function on Vercel (no multipart parsing needed). JPEG keeps it small.
+    const dataUrl = canvas.toDataURL("image/jpeg", 0.92);
 
-    const formData = new FormData();
-
-    formData.append(
-        "image",
-        blob,
-        "market-update.png"
-    );
-
-    const response = await fetch("http://localhost:3000/upload", {
+    const response = await fetch("/api/upload", {
 
         method: "POST",
 
-        body: formData
+        headers: { "Content-Type": "application/json" },
+
+        body: JSON.stringify({ image: dataUrl })
 
     });
 
