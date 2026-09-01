@@ -521,9 +521,9 @@ box-shadow:
 
 }
 
-/* STORY BUTTON — Instagram gradient so it stands apart from Post */
+/* STORY BUTTON — same dark style as the Post button */
 .story-btn{
-background:linear-gradient(135deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+background:linear-gradient(135deg,#111,#1f1f1f,#2d2d2d);
 color:white;
 border:none;
 padding:10px 18px;
@@ -532,7 +532,7 @@ font-size:14px;
 font-weight:600;
 cursor:pointer;
 letter-spacing:.4px;
-box-shadow:0 6px 18px rgba(214,41,118,.45), inset 0 1px 1px rgba(255,255,255,.15);
+box-shadow:0 6px 18px rgba(0,0,0,.45), inset 0 1px 1px rgba(255,255,255,.08);
 transition:.3s ease;
 display:flex;
 align-items:center;
@@ -543,7 +543,7 @@ z-index:999;
 }
 .story-btn:hover{
 transform:translateY(-3px);
-box-shadow:0 10px 22px rgba(214,41,118,.55);
+box-shadow:0 10px 22px rgba(0,0,0,.55);
 }
 .story-btn:active{ transform:scale(.96); }
 
