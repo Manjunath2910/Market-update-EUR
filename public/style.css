@@ -1,0 +1,668 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+margin:0;
+padding:0;
+background:#000;
+overflow-x:hidden;
+
+/* IMPORTANT */
+width:100vw;
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:flex-start;
+}
+
+.card{
+
+width:min(95vw,1080px);
+height:min(95vw,1080px);
+aspect-ratio:1/1;
+
+width:1080px !important;
+height:1080px !important;
+
+max-width:none !important;
+min-width:1080px !important;
+
+margin:auto;
+
+position:relative;
+overflow:hidden;
+padding:40px;
+border-radius:0px;
+
+/* NEW PANDA MONEY THEME */
+background:
+linear-gradient(
+135deg,
+rgba(0,20,18,0.96) 0%,
+rgba(0,35,30,0.94) 35%,
+rgba(0,18,15,0.97) 70%,
+rgba(0,0,0,0.98) 100%
+),
+
+radial-gradient(
+circle at top left,
+rgba(0,255,170,0.10),
+transparent 35%
+),
+
+radial-gradient(
+circle at bottom right,
+rgba(255,215,0,0.08),
+transparent 30%
+);
+
+background-color:#02110f;
+
+text-align:center;
+color:white;
+
+box-shadow:
+0 0 60px rgba(0,255,170,.08),
+inset 0 0 40px rgba(255,255,255,.02);
+
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+
+
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+
+color:#fff;
+
+box-sizing:border-box;
+
+/* VERY IMPORTANT */
+transform:none !important;
+
+
+}
+.card::after{
+content:"";
+
+position:absolute;
+inset:0;
+
+background-image:
+linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+
+background-size:80px 80px;
+
+pointer-events:none;
+
+opacity:.35;
+}
+.coin{
+position:absolute;
+width:120px;
+height:120px;
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:65px;
+font-weight:bold;
+color:white;
+
+background:
+radial-gradient(
+circle at 35% 30%,
+#d9c36b 0%,
+#c8ad4f 35%,
+#b8973d 65%,
+#8e6d22 100%
+);
+
+border:4px solid #f3e7a2;
+
+z-index:10;
+overflow:hidden;
+
+transform:none !important;
+filter:none !important;
+box-shadow:none !important;
+}
+
+/* gold shine */
+.coin::before{
+content:"";
+position:absolute;
+top:12px;
+left:18px;
+width:35px;
+height:35px;
+border-radius:50%;
+
+background:rgba(255,255,255,.22);
+}
+
+.coin span{
+position:relative;
+z-index:2;
+}
+.euro{
+top:90px;
+left:60px;
+}
+
+.rupee{
+top:90px;
+right:60px;
+}
+
+.dollar{
+top:320px;
+right:55px;
+
+width:90px;
+height:90px;
+
+font-size:44px;
+
+box-shadow:
+0 0 20px rgba(255,215,0,.65),
+0 0 35px rgba(255,215,0,.25),
+inset 0 3px 8px rgba(255,255,255,.35),
+inset 0 -5px 10px rgba(0,0,0,.45);
+}
+
+.logo{
+display:flex;
+justify-content:center;
+align-items:center;
+
+margin-top:15px;
+margin-bottom:20px;
+}
+
+.logo img{
+width:240px;
+height:auto;
+
+object-fit:contain;
+
+filter:
+drop-shadow(0 0 18px rgba(0,255,179,.35));
+}
+
+h1{
+background:linear-gradient(
+90deg,
+#d6b36a,
+#fff4c7,
+#d6b36a
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+h1 span{
+display:block;
+color:gold;
+text-shadow:0 0 20px gold;
+}
+
+.line{
+height:3px;
+width:75%;
+
+
+background:linear-gradient(
+90deg,
+transparent,
+#00ffb3,
+#ffffff,
+#00ffb3,
+transparent
+);
+
+margin:-60px auto 20px auto;
+
+box-shadow:0 0 18px rgba(0,255,179,.45);
+
+border-radius:10px;
+}
+
+.headline{
+font-size:50px;
+line-height:1.5;
+color:#ddd;
+margin-top:-35px;
+}
+
+.headline span{
+color:gold;
+font-size:50px;
+font-weight:bold;
+}
+
+.rates{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:85px;
+}
+
+.box{
+width:290px;
+padding:35px;
+border-radius:20px;
+border:2px solid gold;
+
+background:#000000;
+
+box-shadow:
+0 0 25px rgba(255,215,0,.18),
+inset 0 0 15px rgba(255,255,255,.03);
+
+transition:.3s ease;
+}
+.box h3{
+font-size:25px;
+color:gold;
+margin-bottom:18px;
+}
+
+.box span{
+font-size:53px;
+font-weight:bold;
+}
+
+.center-circle{
+width:140px;
+height:140px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:55px;
+color:black;
+font-weight:bold;
+box-shadow:0 0 30px rgb(113, 110, 95);
+}
+
+.status{
+    margin:45px auto 0;
+
+    padding:18px 32px;
+
+    font-size:28px;
+    font-weight:bold;
+
+    border-radius:18px;
+
+    background:#fff;
+    color:#000;
+
+    border:2px solid #e5e5e5;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:16px;
+
+    width:fit-content;
+
+    position:relative;
+
+    left:0;
+    transform:none;
+}
+.footer{
+margin-top:38px;
+font-size:18px;
+letter-spacing:4px;
+color:#aaa;
+}
+
+.card::before{
+content:"";
+
+position:absolute;
+inset:0;
+
+background:
+linear-gradient(
+120deg,
+transparent 0%,
+rgba(255,255,255,.03) 45%,
+transparent 100%
+);
+
+pointer-events:none;
+}
+
+
+
+
+.market-title h1{
+
+font-size:75px;
+font-weight:900;
+letter-spacing:2.5px;
+line-height:1;
+
+
+background:none !important;
+color:#d6b36a !important;
+
+text-shadow:
+0 2px 0 rgba(255,255,255,.25),
+0 0 10px rgba(255,215,0,.20),
+0 0 20px rgba(255,215,0,.10);
+
+filter:none !important;
+opacity:1;
+
+-webkit-text-fill-color:#d6b36a !important;
+-webkit-background-clip:unset !important;
+
+transform:translateZ(0);
+backface-visibility:hidden;
+-webkit-font-smoothing:antialiased;
+
+margin-top:60px;
+margin-bottom:50px;
+}
+
+
+
+.market-line::before,
+.market-line::after{
+content:"";
+
+position:absolute;
+top:30%;
+
+width:18px;
+height:18px;
+
+border-radius:50%;
+
+background:gold;
+
+transform:translateY(-50%);
+
+box-shadow:
+0 0 15px gold;
+}
+
+.market-line::before{
+display :none;
+}
+
+.market-line::after{
+display :none;
+}
+
+.download-btn{
+
+background:linear-gradient(
+135deg,
+#111,
+#1f1f1f,
+#2d2d2d
+);
+
+color:white;
+border:none;
+
+padding:10px 18px;
+
+border-radius:14px;
+
+font-size:14px;
+font-weight:600;
+
+cursor:pointer;
+
+letter-spacing:.4px;
+
+box-shadow:
+0 6px 18px rgba(0,0,0,.45),
+inset 0 1px 1px rgba(255,255,255,.08);
+
+transition:.3s ease;
+
+display:flex;
+align-items:center;
+gap:8px;
+
+/* LEFT SIDE */
+margin-top:1px;
+align-self:flex-start;
+
+z-index:999;
+}
+
+.download-btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 10px 22px rgba(0,0,0,.55);
+
+}
+
+.download-btn:active{
+transform:scale(.96);
+}
+
+.download-btn span{
+    font-size: 20px;
+}
+
+.instagram-btn{
+    
+
+background:linear-gradient(
+135deg,
+#111,
+#1f1f1f,
+#2d2d2d
+);
+
+color:white;
+border:none;
+
+padding:10px 18px;
+
+border-radius:14px;
+
+font-size:14px;
+font-weight:600;
+
+cursor:pointer;
+
+letter-spacing:.4px;
+
+box-shadow:
+0 6px 18px rgba(0,0,0,.45),
+inset 0 1px 1px rgba(255,255,255,.08);
+
+transition:.3s ease;
+
+display:flex;
+align-items:center;
+gap:8px;
+
+/* LEFT SIDE */
+margin-top:1px;
+align-self:flex-start;
+
+z-index:999;
+}
+.instagram-btn:hover{
+    transform:translateY(-3px);
+
+box-shadow:
+0 10px 22px rgba(0,0,0,.55);
+
+}
+
+/* STORY BUTTON — Instagram gradient so it stands apart from Post */
+.story-btn{
+background:linear-gradient(135deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:14px;
+font-size:14px;
+font-weight:600;
+cursor:pointer;
+letter-spacing:.4px;
+box-shadow:0 6px 18px rgba(214,41,118,.45), inset 0 1px 1px rgba(255,255,255,.15);
+transition:.3s ease;
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:10px;
+align-self:flex-start;
+z-index:999;
+}
+.story-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 22px rgba(214,41,118,.55);
+}
+.story-btn:active{ transform:scale(.96); }
+
+/* Portrait 9:16 layout used only when generating the Instagram STORY image.
+   Stretches the card to a full story frame and spreads the content evenly so
+   nothing is cropped and there are no empty bands. */
+.story-capture{
+    height:1920px !important;
+    min-height:1920px !important;
+    max-height:1920px !important;
+    width:1080px !important;
+    aspect-ratio:auto !important;   /* override the card's forced 1:1 square */
+    justify-content:space-evenly !important;
+    padding:120px 50px !important;
+}
+
+
+
+@media(max-width:1100px){
+
+body{
+overflow:auto;
+}
+
+/* KEEP ORIGINAL SIZE */
+.card{
+
+width:1080px !important;
+height:1080px !important;
+
+min-width:1080px !important;
+min-height:1080px !important;
+
+max-width:1080px !important;
+max-height:1080px !important;
+
+transform:none !important;
+}
+
+}
+
+/* FIX MOBILE IMAGE EXPORT */
+
+.card{
+width:1080px !important;
+height:1080px !important;
+
+max-width:none !important;
+min-width:1080px !important;
+
+transform:scale(.32);
+transform-origin:top center;
+
+margin:auto;
+}
+
+/* MOBILE VIEW FIX */
+
+body{
+overflow-x:auto;
+}
+
+@media(max-width:768px){
+
+html,
+body{
+margin:0;
+padding:0;
+background:#000;
+overflow-x:auto;
+overflow-y:auto;
+}
+
+/* FULL CARD */
+
+.card{
+
+width:1080px !important;
+height:1080px !important;
+
+zoom:0.55;
+
+transform:none !important;
+
+margin:20px auto 120px auto;
+
+position:relative;
+
+}
+
+/* DOWNLOAD BUTTON */
+
+.download-btn{
+
+position:fixed;
+
+bottom:20px;
+left:50%;
+
+transform:translateX(-50%);
+
+z-index:9999;
+
+font-size:16px;
+padding:14px 24px;
+
+border-radius:12px;
+
+}
+
+}
+
+.strengthened{
+color:#00c853;
+font-weight:bold;
+}
+
+.weakened{
+color:#ff1744;
+font-weight:bold;
+}
+
