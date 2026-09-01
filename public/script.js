@@ -516,6 +516,9 @@ async function renderStoryCanvas() {
     clone.style.setProperty("aspect-ratio", "auto", "important");
     clone.style.setProperty("justify-content", "space-evenly", "important");
     clone.style.setProperty("background-color", "#02110f", "important");
+    // Undo the mobile fit-scale the card may carry, so the story renders full size.
+    clone.style.setProperty("transform", "none", "important");
+    clone.style.setProperty("transform-origin", "top left", "important");
 
     document.body.appendChild(clone);
 
